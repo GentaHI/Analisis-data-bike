@@ -16,7 +16,9 @@ pipenv shell
 pip install -r requirements.txt
 ```
 
-## Run steamlit app
+## Run and stop steamlit app
 ```
 streamlit run dashboard.py
 ```
+
+Press CTRL + C to stop in the terminal
