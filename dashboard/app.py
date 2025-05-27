@@ -13,7 +13,7 @@ st.write("Dibuat dengan segenap hati.")
 
 # Pertanyaan 1
 st.subheader("Tingkat Peminjaman Sepeda 2011-2012")
-monthly_bike_dl = hour_df.resample(rule='ME', on='date').agg({
+monthly_bike_dl = hour_df.resample(rule='ME', on='date').agg({ # tidak menggunakan rule='M' karena rule untuk month end akan dingantikan dengan ME
     'casual': 'sum',
     'registered': 'sum',
     'total_users': 'sum'
