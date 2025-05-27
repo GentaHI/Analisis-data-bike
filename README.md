@@ -21,4 +21,4 @@ pip install -r requirements.txt
 streamlit run dashboard.py
 ```
 
-Press CTRL + C to stop in the terminal
+Press CTRL + C to stop streamlit in the terminal
