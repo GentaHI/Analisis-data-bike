@@ -16,7 +16,8 @@ pipenv shell
 pip install -r requirements.txt
 ```
 
-## Run and stop steamlit app
+## Run and stop streamlit app
+To run the streamlit app, make sure your current path in terminal is in the ./dashboard, then run:
 ```
 streamlit run app.py
 ```
