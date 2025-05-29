@@ -18,7 +18,7 @@ pip install -r requirements.txt
 
 ## Run and stop steamlit app
 ```
-streamlit run dashboard.py
+streamlit run app.py
 ```
 
 Press CTRL + C to stop streamlit in the terminal
