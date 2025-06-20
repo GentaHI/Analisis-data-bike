@@ -36,6 +36,17 @@ def overall_borrowed_bike_plot(df_input, set_x, mark, set_color, set_label):
     ax.legend(fontsize=15, loc="upper left")
     st.pyplot(fig)
 
+def weather_status_plot(input_df, y_axis, title_str):
+    # perbandingan barplot total user berdasarkan musim, dimana setiap musim dibagi sesuai dengan kategori suhu
+    fig, ax = plt.subplots(figsize=(14,6))
+    sns.barplot(data=input_df, x='season', y=y_axis, hue= 'suhu',
+                palette=["#2166ac", "#f4a582", "#d6604d"], ax=ax)
+    #definisi nama
+    ax.set_title(title_str, size=20)
+    ax.set_ylabel("Jumlah User", size = 15)
+    ax.legend(title='Suhu', title_fontsize=15, loc='upper left', fontsize=14)
+    st.pyplot(fig)
+
 def day_status_info(input_df):
     processed_df = input_df.groupby('day_status')[[
         'casual', 
@@ -67,7 +78,8 @@ def hours_bike_subplot(input_df, y_axis, title_input):
 sns.set_theme(style="whitegrid", palette="bright")
 
 # Load data
-bike_df = pd.read_csv('edited_hour.csv', parse_dates=['date'])
+csv_url = "https://raw.githubusercontent.com/GentaHI/Analisis-data-bike/refs/heads/main/dashboard/edited_hour.csv"
+bike_df = pd.read_csv(csv_url, parse_dates=['date'])
 
 # Mengurut Ulang
 bike_df.sort_values(by="borrow_id", inplace=True)
@@ -235,33 +247,12 @@ st.pyplot(fig)
 # pertanyaan 4
 st.subheader("Perbandingan Peminjaman Sepeda Terhadap Musim")
 tab_season_1, tab_season_2, tab_season_3 = st.tabs(["Total User Seluruhnya", "User Umum", "User Teregistrasi"])
+
 with tab_season_1:
-    # perbandingan barplot total user berdasarkan musim, dimana setiap musim dibagi sesuai dengan kategori suhu
-    fig, ax = plt.subplots(figsize=(14,6))
-    sns.barplot(data=main_df, x='season', y='total_users', hue= 'suhu',
-                palette=["#2166ac", "#f4a582", "#d6604d"], ax=ax)
-    #definisi nama
-    ax.set_title('Rata-rata Total Peminjaman Sepeda Setiap Musim', size=20)
-    ax.set_ylabel("Jumlah User", size = 15)
-    ax.legend(title='Suhu', title_fontsize=15, loc='upper left', fontsize=14)
-    st.pyplot(fig)
+    weather_status_plot(main_df, "total_users", "Rata-rata Total Peminjaman Sepeda Setiap Musim")
 
 with tab_season_2:
-    fig, ax = plt.subplots(figsize=(14,6))
-    sns.barplot(data=main_df, x='season', y='casual', hue= 'suhu',
-                palette=["#2166ac", "#f4a582", "#d6604d"], ax=ax)
-    #definisi nama
-    ax.set_title('Rata-rata Peminjaman Sepeda oleh User Umum Setiap Musim', size=20)
-    ax.set_ylabel("Jumlah User", size = 15)
-    ax.legend(title='Suhu', title_fontsize=15, loc='upper left', fontsize=14)
-    st.pyplot(fig)
+    weather_status_plot(main_df, "casual", "Rata-rata Peminjaman Sepeda oleh User Umum Setiap Musim")
 
 with tab_season_3:
-    fig, ax = plt.subplots(figsize=(14,6))
-    sns.barplot(data=main_df, x='season', y='registered', hue= 'suhu',
-                palette=["#2166ac", "#f4a582", "#d6604d"], ax=ax)
-    #definisi nama
-    ax.set_title('Rata-rata Peminjaman Sepeda oleh User Teregistrasi Setiap Musim', size=20)
-    ax.set_ylabel("Jumlah User", size = 15)
-    ax.legend(title='Suhu', title_fontsize=15, loc='upper left', fontsize=14)
-    st.pyplot(fig)
+    weather_status_plot(main_df, "registered", "Rata-rata Peminjaman Sepeda oleh User Teregistrasi Setiap Musim")
