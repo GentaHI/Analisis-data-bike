@@ -204,15 +204,12 @@ st.subheader("Frekuensi Peminjaman berdasarkan Jam")
 tab_freq_1, tab_freq_2, tab_freq_3 = st.tabs(["Total User Seluruhnya", "User Umum", "User Teregistrasi"])
 
 with tab_freq_1:
-    hours_bike_subplot(main_df, "total_users", "Total Peminjaman Sepeda Setiap Jam")
     hours_bike_subplot(main_df, "total_users", "Rata-rata Peminjaman Sepeda Setiap Jam")
 
 with tab_freq_2:
-    hours_bike_subplot(main_df, "casual", "Total Peminjaman Sepeda oleh User Umum Setiap Jam")
     hours_bike_subplot(main_df, "casual", "Rata-rata Peminjaman Sepeda oleh User Umum Setiap Jam")
 
 with tab_freq_3:
-    hours_bike_subplot(main_df, "registered", "Total Peminjaman Sepeda oleh User Teregistrasi Setiap Jam")
     hours_bike_subplot(main_df, "registered", "Rata-rata Peminjaman Sepeda oleh User Teregistrasi Setiap Jam")
     
 # pertanyaan 3
